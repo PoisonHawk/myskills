@@ -24,7 +24,11 @@ export class AppComponent {
 			skill: 'JS',
 			material: 'JS'
 		},
-	]
+	];
+
+	addSkill(){
+		console.log('add skill');
+	}
 	
 }
 
