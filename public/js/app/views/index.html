@@ -1,0 +1,42 @@
+<main class='container'>
+
+	<header class='text-center'>
+		<h1>{{title}}</h1>
+	</header>
+	<section class='chart'>
+    		<div class='chart-nav'>
+    			<a href='#'>Chart</a>
+    			<a href='#'>Active</a>
+			</div>
+    			<div>
+    				<canvas id="myChart" width="400" height="100"></canvas>
+    			</div>
+    		<div>
+    			<a href='#'>All</a>
+    			<a href='#'>Month</a>
+    			<a href='#'>Week</a>
+    			<a href='#'>Day</a>
+    		</div>
+    	</section>
+    	<section class="skills">
+    		<p *ngIf="skills.length === 0">Нет ни одного навыка.</p>
+
+    		<button class="btn btn-default" *ngFor="#skill of skills">{{ skill.skillName }}</button>
+    		
+    		<div><a href='#'>Add skill</a></div>
+    	</section>
+    	<section class="register">
+    		<table class="table table-striped">
+			  <thead>
+			  	<th>Skill</th>
+			  	<th>Active</th>
+			  </thead>
+			  <tbody>
+			  	<tr *ngFor="#action of actions">
+			  		<td>{{action.skill}}</td>
+			  		<td>{{action.material}}</td>
+			  	</tr>			  	
+			  </tbody>
+			</table>
+    	</section>
+</main>

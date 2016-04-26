@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>My skills</title>
 
-
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js'></script>
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -17,88 +16,35 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.min.js'></script>
 
+
+<script src="/js/node_modules/es6-shim/es6-shim.min.js"></script>
+<script src="/js/node_modules/systemjs/dist/system-polyfills.js"></script>
+<script src="/js/node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>   
+
+<script src="/js/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+<script src="/js/node_modules/systemjs/dist/system.src.js"></script>
+<script src="/js/node_modules/rxjs/bundles/Rx.js"></script>
+<script src="/js/node_modules/angular2/bundles/angular2.dev.js"></script>
+
+<script>
+      System.config({
+        packages: {        
+          'js/app': {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('/js/app/main')
+            .then(null, console.error.bind(console));
+    </script>
+
 <link rel="stylesheet" href='/css/style.css'>
+
 <script src='/js/main.js'></script>
 
 </head>
-<body>
-    <main class='container'>
-    	<header class="text-center">
-    	<h1>My Skills Track</h1>
-    	</header>
-    	<section class='chart'>
-    		<div class='chart-nav'>
-    			<a href='#'>Chart</a>
-    			<a href='#'>Active</a>
-			</div>
-    			<div>
-    				<canvas id="myChart" width="400" height="100"></canvas>
-    				<script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Laravel", "PHP", "JS", "Angular", "Wordpress", "React"],
-        datasets: [{
-            label: 'Rate of skills',
-            data: [12, 19, 3, 5, 2, 3]
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
-
-    			</div>
-    		<div>
-    			<a href='#'>All</a>
-    			<a href='#'>Month</a>
-    			<a href='#'>Week</a>
-    			<a href='#'>Day</a>
-    		</div>
-    	</section>
-    	<section class="skills">
-    		<button class="btn btn-default">Laravel</button>
-    		<button class="btn btn-default">PHP</button>
-    		<button class="btn btn-default">JS</button>
-    		<button class="btn btn-default">Angular</button>
-    		<button class="btn btn-default">Wordpress</button>
-    		<button class="btn btn-default">React</button>
-    		<div><a href='#'>Add skill</a></div>
-    	</section>
-    	<section class="register">
-    		<table class="table table-striped">
-			  <thead>
-			  	<th>Skill</th>
-			  	<th>Active</th>
-			  </thead>
-			  <tbody>
-			  	<tr>
-			  		<td>Laravel</td>
-			  		<td>Статья на хабре</td>
-			  	</tr>
-			  	<tr>
-			  		<td>Laravel</td>
-			  		<td>Статья на хабре</td>
-			  	</tr>
-			  	<tr>
-			  		<td>Laravel</td>
-			  		<td>Статья на хабре</td>
-			  	</tr>
-			  	<tr>
-			  		<td>Laravel</td>
-			  		<td>Статья на хабре</td>
-			  	</tr>
-			  </tbody>
-			</table>
-    	</section>
-    </main>
+<body>	
+	<my-app>Loading...</my-app>  
 </body>
 </html>
