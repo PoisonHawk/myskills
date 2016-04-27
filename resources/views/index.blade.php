@@ -14,26 +14,24 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.min.js'></script>
-
 
 <script src="/js/node_modules/es6-shim/es6-shim.min.js"></script>
 <script src="/js/node_modules/systemjs/dist/system-polyfills.js"></script>
-<script src="/js/node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>   
-
+<script src="/js/node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
 <script src="/js/node_modules/angular2/bundles/angular2-polyfills.js"></script>
 <script src="/js/node_modules/systemjs/dist/system.src.js"></script>
 <script src="/js/node_modules/rxjs/bundles/Rx.js"></script>
 <script src="/js/node_modules/angular2/bundles/angular2.dev.js"></script>
-
+<script src='/js/node_modules/chart.js/dist/Chart.js'></script>
 <script>
       System.config({
-        packages: {        
+        packages: {
           'js/app': {
             format: 'register',
             defaultExtension: 'js'
-          }
+          },
         }
+
       });
       System.import('/js/app/main')
             .then(null, console.error.bind(console));
@@ -41,10 +39,8 @@
 
 <link rel="stylesheet" href='/css/style.css'>
 
-<script src='/js/main.js'></script>
-
 </head>
-<body>	
-	<my-app>Loading...</my-app>  
+<body>
+	<my-app>Loading...</my-app>
 </body>
 </html>

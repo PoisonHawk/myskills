@@ -1,6 +1,3 @@
-console.log('main.js');
-$(document).ready(function(){
-//Chart
 
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
@@ -22,5 +19,3 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
-})
