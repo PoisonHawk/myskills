@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', './app.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,27 +10,57 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, app_component_1;
     var ChartComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (app_component_1_1) {
+                app_component_1 = app_component_1_1;
             }],
         execute: function() {
             ChartComponent = (function () {
                 function ChartComponent() {
                 }
+                // skills = [{
+                //   name: "Laravel",
+                //   rate: 20,
+                // },
+                // {
+                //   name: "PHP",
+                //   rate:30,
+                // },
+                // {
+                //   name: 'Angular',
+                //   rate: 4,
+                // },
+                // {
+                //   name: 'React',
+                //   rate:2,
+                // }
+                // ];
+                ChartComponent.prototype.getLabels = function () {
+                    return this.skills.map(function (skill) {
+                        return skill.name;
+                    });
+                };
+                ChartComponent.prototype.getRates = function () {
+                    return this.skills.map(function (skill) {
+                        return skill.rate;
+                    });
+                };
                 ChartComponent.prototype.ngAfterViewInit = function () {
                     var ctx = this.myChart.nativeElement.getContext("2d");
                     // happy drawing from here on
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: ["Laravel", "PHP", "JS", "Angular", "Wordpress", "React"],
+                            labels: this.getLabels(),
                             datasets: [{
                                     label: 'Rate of skills',
-                                    data: [12, 19, 3, 5, 2, 3]
+                                    data: this.getRates(),
                                 }]
                         },
                         options: {
@@ -48,10 +78,14 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     core_1.ViewChild('myChart'), 
                     __metadata('design:type', core_1.ElementRef)
                 ], ChartComponent.prototype, "myChart", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', app_component_1.AppComponent)
+                ], ChartComponent.prototype, "skills", void 0);
                 ChartComponent = __decorate([
                     core_1.Component({
                         selector: 'app-chart',
-                        template: "\n  <section class='chart'>\n        <div class='chart-nav'>\n          <a href='#'>Chart</a>\n          <a href='#'>Active</a>\n        </div>\n        <div>\n            <canvas #myChart width=\"400\" height=\"100\"></canvas>\n        </div>\n        <div>\n          <a href='#'>Allasasasa</a>\n          <a href='#'>Month</a>\n          <a href='#'>Week</a>\n          <a href='#'>Day</a>\n        </div>\n    </section>\n  "
+                        template: "\n  <section class='chart'>\n        <div class='chart-nav'>\n          <a href='#'>Chart</a>\n          <a href='#'>Active</a>\n        </div>\n        <div>\n            <canvas #myChart width=\"400\" height=\"100\"></canvas>\n        </div>\n        <div>\n          <a href='#'>All</a>\n          <a href='#'>Month</a>\n          <a href='#'>Week</a>\n          <a href='#'>Day</a>\n        </div>\n    </section>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], ChartComponent);

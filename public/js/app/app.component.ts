@@ -12,6 +12,8 @@ import {ChartComponent} from './chart.component';
 
 export class AppComponent {
 	title = 'My Skills Tracker';
+
+	//todo получать skills из запроса к БД
 	skills = [
 		new Skill(1, 'Laravel', 10),
 		new Skill(2, 'PHP', 30),
@@ -19,8 +21,11 @@ export class AppComponent {
 		new Skill(2, 'React', 2)
 	];
 
+	//todo обработчик добавления навыка
 	addSkill(){
-		//todo test
+		//todo валидация
+
+		//todo сохранение в бд
 		console.log('add skill');
 	}
 

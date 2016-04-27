@@ -1,4 +1,5 @@
-import {Component, ViewChild, ElementRef} from 'angular2/core';
+import {Component, ViewChild, ElementRef, Input} from 'angular2/core';
+import {AppComponent} from './app.component';
 
 declare var Chart: any;
 
@@ -14,7 +15,7 @@ declare var Chart: any;
             <canvas #myChart width="400" height="100"></canvas>
         </div>
         <div>
-          <a href='#'>Allasasasa</a>
+          <a href='#'>All</a>
           <a href='#'>Month</a>
           <a href='#'>Week</a>
           <a href='#'>Day</a>
@@ -26,6 +27,39 @@ declare var Chart: any;
 export class ChartComponent{
     @ViewChild ('myChart') myChart: ElementRef;
 
+    @Input()
+    skills: AppComponent;
+
+    // skills = [{
+    //   name: "Laravel",
+    //   rate: 20,
+    // },
+    // {
+    //   name: "PHP",
+    //   rate:30,
+    // },
+    // {
+    //   name: 'Angular',
+    //   rate: 4,
+    // },
+    // {
+    //   name: 'React',
+    //   rate:2,
+    // }
+    // ];
+
+    getLabels(){
+        return this.skills.map(function(skill){
+          return skill.name;
+        })
+    }
+
+    getRates(){
+      return this.skills.map(function(skill){
+          return skill.rate;
+      })
+    }
+
     ngAfterViewInit() { // wait for the view to init before using the element
 
       let ctx: CanvasRenderingContext2D = this.myChart.nativeElement.getContext("2d");
@@ -34,10 +68,10 @@ export class ChartComponent{
       var myChart = new Chart(ctx, {
          type: 'bar',
          data: {
-             labels: ["Laravel", "PHP", "JS", "Angular", "Wordpress", "React"],
+             labels: this.getLabels(),
              datasets: [{
                  label: 'Rate of skills',
-                 data: [12, 19, 3, 5, 2, 3]
+                 data: this.getRates(),
              }]
          },
          options: {

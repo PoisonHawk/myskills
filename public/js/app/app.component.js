@@ -30,6 +30,7 @@ System.register(['angular2/core', './skill', './register.component', './chart.co
             AppComponent = (function () {
                 function AppComponent() {
                     this.title = 'My Skills Tracker';
+                    //todo получать skills из запроса к БД
                     this.skills = [
                         new skill_1.Skill(1, 'Laravel', 10),
                         new skill_1.Skill(2, 'PHP', 30),
@@ -37,8 +38,10 @@ System.register(['angular2/core', './skill', './register.component', './chart.co
                         new skill_1.Skill(2, 'React', 2)
                     ];
                 }
+                //todo обработчик добавления навыка
                 AppComponent.prototype.addSkill = function () {
-                    //todo test
+                    //todo валидация
+                    //todo сохранение в бд
                     console.log('add skill');
                 };
                 AppComponent = __decorate([
