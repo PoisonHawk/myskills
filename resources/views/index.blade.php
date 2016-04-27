@@ -19,7 +19,7 @@
 
 <script src="/js/node_modules/es6-shim/es6-shim.min.js"></script>
 <script src="/js/node_modules/systemjs/dist/system-polyfills.js"></script>
-<script src="/js/node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>   
+<script src="/js/node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
 
 <script src="/js/node_modules/angular2/bundles/angular2-polyfills.js"></script>
 <script src="/js/node_modules/systemjs/dist/system.src.js"></script>
@@ -28,7 +28,7 @@
 
 <script>
       System.config({
-        packages: {        
+        packages: {
           'js/app': {
             format: 'register',
             defaultExtension: 'js'
@@ -41,10 +41,10 @@
 
 <link rel="stylesheet" href='/css/style.css'>
 
-<script src='/js/main.js'></script>
+<!--<script src='/js/main.js'></script>-->
 
 </head>
-<body>	
-	<my-app>Loading...</my-app>  
+<body>
+	<my-app>Loading...</my-app>
 </body>
 </html>

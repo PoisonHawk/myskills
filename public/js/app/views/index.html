@@ -12,7 +12,7 @@
     				<canvas id="myChart" width="400" height="100"></canvas>
     			</div>
     		<div>
-    			<a href='#'>All</a>
+    			<a href='#'>Allasasasa</a>
     			<a href='#'>Month</a>
     			<a href='#'>Week</a>
     			<a href='#'>Day</a>
@@ -22,23 +22,10 @@
     		<p *ngIf="skills.length === 0">Нет ни одного навыка.</p>
 
     		<button class="btn btn-default" *ngFor="#skill of skills">{{ skill.skillName }}</button>
-    		
+
     		<div><a href='#' data-toggle="modal" data-target="#myModal">Add skill</a></div>
     	</section>
-    	<section class="register">
-    		<table class="table table-striped">
-			  <thead>
-			  	<th>Skill</th>
-			  	<th>Active</th>
-			  </thead>
-			  <tbody>
-			  	<tr *ngFor="#action of actions">
-			  		<td>{{action.skill}}</td>
-			  		<td>{{action.material}}</td>
-			  	</tr>			  	
-			  </tbody>
-			</table>
-    	</section>
+    	<register></register>
 
 
 <!-- Modal -->
@@ -54,7 +41,7 @@
           <div class="form-group">
             <label for="recipient-name" class="control-label">New skill:</label>
             <input type="text" class="form-control" id="recipient-name">
-          </div>          
+          </div>
         </form>
       </div>
       <div class="modal-footer">
