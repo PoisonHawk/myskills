@@ -12,6 +12,7 @@
 */
 
 $app->get('/', function () use ($app) {
+    
     return view('index');
 //    return $app->version();
 });
