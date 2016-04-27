@@ -3,21 +3,7 @@
 	<header class='text-center'>
 		<h1>{{title}}</h1>
 	</header>
-	<section class='chart'>
-    		<div class='chart-nav'>
-    			<a href='#'>Chart</a>
-    			<a href='#'>Active</a>
-			</div>
-    			<div>
-    				<canvas id="myChart" width="400" height="100"></canvas>
-    			</div>
-    		<div>
-    			<a href='#'>Allasasasa</a>
-    			<a href='#'>Month</a>
-    			<a href='#'>Week</a>
-    			<a href='#'>Day</a>
-    		</div>
-    	</section>
+			<app-chart></app-chart>
     	<section class="skills">
     		<p *ngIf="skills.length === 0">Нет ни одного навыка.</p>
 
@@ -25,7 +11,7 @@
 
     		<div><a href='#' data-toggle="modal" data-target="#myModal">Add skill</a></div>
     	</section>
-    	<register></register>
+    	<app-register></app-register>
 
 
 <!-- Modal -->

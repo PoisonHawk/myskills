@@ -1,4 +1,4 @@
-System.register(['angular2/core', './skill', './register.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './skill', './register.component', './chart.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './skill', './register.component'], function(e
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, skill_1, register_component_1;
+    var core_1, skill_1, register_component_1, chart_component_1;
     var AppComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', './skill', './register.component'], function(e
             },
             function (register_component_1_1) {
                 register_component_1 = register_component_1_1;
+            },
+            function (chart_component_1_1) {
+                chart_component_1 = chart_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -42,7 +45,7 @@ System.register(['angular2/core', './skill', './register.component'], function(e
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'js/app/views/index.html',
-                        directives: [register_component_1.RegisterComponent]
+                        directives: [register_component_1.RegisterComponent, chart_component_1.ChartComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

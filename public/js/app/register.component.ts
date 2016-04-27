@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 
 @Component({
-  selector:'register',
+  selector:'app-register',
   template: `
   <section class="register">
     <table class="table table-striped">
@@ -29,7 +29,7 @@ export class RegisterComponent{
 		},
 		{
 			skill: 'JS',
-			material: 'JSz'
+			material: 'JS'
 		},
 	];
 }

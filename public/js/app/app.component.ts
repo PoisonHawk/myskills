@@ -1,11 +1,12 @@
 import {Component} from 'angular2/core';
 import {Skill} from './skill';
 import {RegisterComponent} from './register.component';
+import {ChartComponent} from './chart.component';
 
 @Component({
 	selector: 'my-app',
 	templateUrl: 'js/app/views/index.html',
-	directives: [RegisterComponent]
+	directives: [RegisterComponent, ChartComponent]
 
 })
 

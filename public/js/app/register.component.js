@@ -27,13 +27,13 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         },
                         {
                             skill: 'JS',
-                            material: 'JSz'
+                            material: 'JS'
                         },
                     ];
                 }
                 RegisterComponent = __decorate([
                     core_1.Component({
-                        selector: 'register',
+                        selector: 'app-register',
                         template: "\n  <section class=\"register\">\n    <table class=\"table table-striped\">\n    <thead>\n      <th>Skill</th>\n      <th>Active</th>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"#action of actions\">\n        <td>{{action.skill}}</td>\n        <td>{{action.material}}</td>\n      </tr>\n    </tbody>\n  </table>\n  </section>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
