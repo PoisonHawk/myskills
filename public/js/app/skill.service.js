@@ -1,4 +1,4 @@
-System.register(['angular2/core', './skill'], function(exports_1, context_1) {
+System.register(['angular2/core', './mock-skills'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,27 +10,22 @@ System.register(['angular2/core', './skill'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, skill_1;
+    var core_1, mock_skills_1;
     var SkillService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (skill_1_1) {
-                skill_1 = skill_1_1;
+            function (mock_skills_1_1) {
+                mock_skills_1 = mock_skills_1_1;
             }],
         execute: function() {
             SkillService = (function () {
                 function SkillService() {
                 }
                 SkillService.prototype.getSkills = function () {
-                    return [
-                        new skill_1.Skill(1, 'Laravel', 10),
-                        new skill_1.Skill(2, 'PHP', 30),
-                        new skill_1.Skill(2, 'Angular', 2),
-                        new skill_1.Skill(2, 'React', 2)
-                    ];
+                    return Promise.resolve(mock_skills_1.Skills);
                 };
                 SkillService = __decorate([
                     core_1.Injectable(), 

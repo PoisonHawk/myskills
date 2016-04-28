@@ -1,5 +1,7 @@
-import {Component, ViewChild, ElementRef, Input} from 'angular2/core';
+import {Component, ViewChild, ElementRef, Input, OnInit} from 'angular2/core';
 import {AppComponent} from './app.component';
+import {SkillService} from './skill.service';
+import {Skill} from './skill';
 
 declare var Chart: any;
 
@@ -24,29 +26,22 @@ declare var Chart: any;
   `
 })
 
-export class ChartComponent{
+export class ChartComponent implements OnInit{
     @ViewChild ('myChart') myChart: ElementRef;
 
+    skills: Skill[];
 
-    skills = [{
-      name: "Laravel",
-      rate: 20,
-    },
-    {
-      name: "PHP",
-      rate:30,
-    },
-    {
-      name: 'Angular',
-      rate: 4,
-    },
-    {
-      name: 'React',
-      rate:2,
+    ngOnInit(){
+
+        // this._skillService.getSkills().then(skills => this.skills = skills);
     }
-    ];
+
+    constructor(private _skillService: SkillService){
+      this._skillService.getSkills().then(skills => this.skills = skills);
+    }
 
     getLabels(){
+
         return this.skills.map(function(skill){
           return skill.name;
         })

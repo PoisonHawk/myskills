@@ -7,7 +7,7 @@
     	<section class="skills">
     		<p *ngIf="skills.length === 0">Нет ни одного навыка.</p>
 
-    		<button class="btn btn-default" *ngFor="#skill of skills">{{ skill.skillName }}</button>
+    		<button class="btn btn-default" *ngFor="#skill of skills">{{ skill.name }} </button>
 
     		<div><a href='#' data-toggle="modal" data-target="#myModal">Add skill</a></div>
     	</section>

@@ -1,13 +1,10 @@
 export class Skill{
 
-	skillName: string;
+	// name: string;
+	// rate: number;
 
 	constructor(
-		public id:number,
-		public name:string,
-		public rate:number){
-
-		this.skillName = name;
-	}
-	
+		public id: number,
+		public name: string,
+		public rate: number){	}
 }

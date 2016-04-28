@@ -31,9 +31,15 @@ System.register(['angular2/core', './register.component', './chart.component', '
                 function AppComponent(_skillService) {
                     this._skillService = _skillService;
                     this.title = 'My Skills Tracker';
-                    //todo получать skills из запроса к БД
-                    this.skills = [];
+                    this.getSkills();
                 }
+                AppComponent.prototype.getSkills = function () {
+                    var _this = this;
+                    this._skillService.getSkills().then(function (skills) { console.log(skills); _this.skills = skills; });
+                };
+                AppComponent.prototype.ngOnInit = function () {
+                    // this.getSkills();
+                };
                 //todo обработчик добавления навыка
                 AppComponent.prototype.addSkill = function () {
                     //todo валидация
@@ -44,7 +50,8 @@ System.register(['angular2/core', './register.component', './chart.component', '
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'js/app/views/index.html',
-                        directives: [register_component_1.RegisterComponent, chart_component_1.ChartComponent]
+                        directives: [register_component_1.RegisterComponent, chart_component_1.ChartComponent],
+                        providers: [skill_service_1.SkillService],
                     }), 
                     __metadata('design:paramtypes', [skill_service_1.SkillService])
                 ], AppComponent);
