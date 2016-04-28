@@ -1,4 +1,4 @@
-System.register(['angular2/core', './app.component'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,37 +10,34 @@ System.register(['angular2/core', './app.component'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, app_component_1;
+    var core_1;
     var ChartComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (app_component_1_1) {
-                app_component_1 = app_component_1_1;
             }],
         execute: function() {
             ChartComponent = (function () {
                 function ChartComponent() {
+                    this.skills = [{
+                            name: "Laravel",
+                            rate: 20,
+                        },
+                        {
+                            name: "PHP",
+                            rate: 30,
+                        },
+                        {
+                            name: 'Angular',
+                            rate: 4,
+                        },
+                        {
+                            name: 'React',
+                            rate: 2,
+                        }
+                    ];
                 }
-                // skills = [{
-                //   name: "Laravel",
-                //   rate: 20,
-                // },
-                // {
-                //   name: "PHP",
-                //   rate:30,
-                // },
-                // {
-                //   name: 'Angular',
-                //   rate: 4,
-                // },
-                // {
-                //   name: 'React',
-                //   rate:2,
-                // }
-                // ];
                 ChartComponent.prototype.getLabels = function () {
                     return this.skills.map(function (skill) {
                         return skill.name;
@@ -78,10 +75,6 @@ System.register(['angular2/core', './app.component'], function(exports_1, contex
                     core_1.ViewChild('myChart'), 
                     __metadata('design:type', core_1.ElementRef)
                 ], ChartComponent.prototype, "myChart", void 0);
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', app_component_1.AppComponent)
-                ], ChartComponent.prototype, "skills", void 0);
                 ChartComponent = __decorate([
                     core_1.Component({
                         selector: 'app-chart',

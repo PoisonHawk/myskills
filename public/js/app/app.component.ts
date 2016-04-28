@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {Skill} from './skill';
 import {RegisterComponent} from './register.component';
 import {ChartComponent} from './chart.component';
+import {SkillService} from './skill.service';
 
 @Component({
 	selector: 'my-app',
@@ -14,12 +15,11 @@ export class AppComponent {
 	title = 'My Skills Tracker';
 
 	//todo получать skills из запроса к БД
-	skills = [
-		new Skill(1, 'Laravel', 10),
-		new Skill(2, 'PHP', 30),
-		new Skill(2, 'Angular', 2),
-		new Skill(2, 'React', 2)
-	];
+	skills = [];
+
+	constructor(private _skillService: SkillService){
+
+	}
 
 	//todo обработчик добавления навыка
 	addSkill(){

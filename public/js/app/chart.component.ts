@@ -27,26 +27,24 @@ declare var Chart: any;
 export class ChartComponent{
     @ViewChild ('myChart') myChart: ElementRef;
 
-    @Input()
-    skills: AppComponent;
 
-    // skills = [{
-    //   name: "Laravel",
-    //   rate: 20,
-    // },
-    // {
-    //   name: "PHP",
-    //   rate:30,
-    // },
-    // {
-    //   name: 'Angular',
-    //   rate: 4,
-    // },
-    // {
-    //   name: 'React',
-    //   rate:2,
-    // }
-    // ];
+    skills = [{
+      name: "Laravel",
+      rate: 20,
+    },
+    {
+      name: "PHP",
+      rate:30,
+    },
+    {
+      name: 'Angular',
+      rate: 4,
+    },
+    {
+      name: 'React',
+      rate:2,
+    }
+    ];
 
     getLabels(){
         return this.skills.map(function(skill){
