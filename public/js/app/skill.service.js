@@ -27,6 +27,8 @@ System.register(['angular2/core', './mock-skills'], function(exports_1, context_
                 SkillService.prototype.getSkills = function () {
                     return Promise.resolve(mock_skills_1.Skills);
                 };
+                SkillService.prototype.processSkill = function (Skill) {
+                };
                 SkillService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])

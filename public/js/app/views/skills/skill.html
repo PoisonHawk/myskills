@@ -1,5 +1,11 @@
 <section class="skills">
   <p *ngIf="skills.length === 0">Нет ни одного навыка.</p>
-  <button class="btn btn-default" *ngFor="#skill of skills">{{ skill.name }} </button>
-  <div><a href='#' data-toggle="modal" data-target="#myModal">Add skill</a></div>
+  <button class="btn btn-default" *ngFor="#skill of skills" (click)=processSkill(skill)>{{ skill.name }} </button>
+  <div><a href='#' data-toggle="modal" data-target="#myModal" (click)=addSkill()>Add skill</a></div>
 </section>
+
+<add-skill-form
+  [model]="model"
+  (onAddedSkill) = "onAddedSkill($event)"
+>
+</add-skill-form>

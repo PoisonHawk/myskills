@@ -10,14 +10,12 @@ System.register(['./skill'], function(exports_1, context_1) {
             }],
         execute: function() {
             exports_1("Skills", Skills = [
-                // {'name': 'PHP', 'rate': 10},
-                // {'name': 'JS', 'rate': 5},
-                new skill_1.Skill(1, 'Laravel', 10),
-                new skill_1.Skill(2, 'PHP', 25),
-                new skill_1.Skill(2, 'Angular', 2),
-                new skill_1.Skill(2, 'React', 2),
-                new skill_1.Skill(5, 'Java Script', 20),
-                new skill_1.Skill(6, 'React', 0),
+                new skill_1.Skill('Laravel', 10),
+                new skill_1.Skill('PHP', 25),
+                new skill_1.Skill('Angular', 2),
+                new skill_1.Skill('React', 2),
+                new skill_1.Skill('Java Script', 20),
+                new skill_1.Skill('React', 0),
             ]);
         }
     }

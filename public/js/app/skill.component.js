@@ -1,4 +1,4 @@
-System.register(['angular2/core', './skill.service'], function(exports_1, context_1) {
+System.register(['angular2/core', './skill.service', './add-skill-form.component', './skill'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './skill.service'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, skill_service_1;
+    var core_1, skill_service_1, add_skill_form_component_1, skill_1;
     var SkillComponent;
     return {
         setters:[
@@ -19,12 +19,19 @@ System.register(['angular2/core', './skill.service'], function(exports_1, contex
             },
             function (skill_service_1_1) {
                 skill_service_1 = skill_service_1_1;
+            },
+            function (add_skill_form_component_1_1) {
+                add_skill_form_component_1 = add_skill_form_component_1_1;
+            },
+            function (skill_1_1) {
+                skill_1 = skill_1_1;
             }],
         execute: function() {
             SkillComponent = (function () {
                 function SkillComponent(_skillService) {
                     this._skillService = _skillService;
                     this.getSkills();
+                    this.model = new skill_1.Skill('', 0);
                 }
                 SkillComponent.prototype.getSkills = function () {
                     var _this = this;
@@ -32,14 +39,22 @@ System.register(['angular2/core', './skill.service'], function(exports_1, contex
                 };
                 SkillComponent.prototype.addSkill = function (name) {
                     console.log('add skill');
+                    this.model = new skill_1.Skill('', 0);
                 };
-                SkillComponent.prototype.processSkill = function () {
+                SkillComponent.prototype.processSkill = function (skill) {
                     console.log('process Skill');
+                    this._skillService.processSkill(skill_1.Skill);
+                };
+                SkillComponent.prototype.onAddedSkill = function (skill) {
+                    console.log('on added');
+                    this.skills.push(skill);
+                    this.model = new skill_1.Skill('', 0);
                 };
                 SkillComponent = __decorate([
                     core_1.Component({
                         selector: 'app-skills',
                         templateUrl: 'js/app/views/skills/skill.html',
+                        directives: [add_skill_form_component_1.AddSkillFormComponent],
                     }), 
                     __metadata('design:paramtypes', [skill_service_1.SkillService])
                 ], SkillComponent);

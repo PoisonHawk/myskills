@@ -6,4 +6,9 @@ export class SkillService {
   getSkills(){
     return Promise.resolve(Skills);
   }
+
+  processSkill(Skill){
+    
+  }
+
 }

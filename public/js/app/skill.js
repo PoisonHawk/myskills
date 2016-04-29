@@ -6,10 +6,7 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             Skill = (function () {
-                // name: string;
-                // rate: number;
-                function Skill(id, name, rate) {
-                    this.id = id;
+                function Skill(name, rate) {
                     this.name = name;
                     this.rate = rate;
                 }
