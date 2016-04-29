@@ -1,4 +1,4 @@
-System.register(['angular2/core', './register.component', './chart.component', './skill.service'], function(exports_1, context_1) {
+System.register(['angular2/core', './register.component', './chart.component', './skill.service', './skill.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './register.component', './chart.component', '
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, register_component_1, chart_component_1, skill_service_1;
+    var core_1, register_component_1, chart_component_1, skill_service_1, skill_component_1;
     var AppComponent;
     return {
         setters:[
@@ -25,35 +25,23 @@ System.register(['angular2/core', './register.component', './chart.component', '
             },
             function (skill_service_1_1) {
                 skill_service_1 = skill_service_1_1;
+            },
+            function (skill_component_1_1) {
+                skill_component_1 = skill_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(_skillService) {
-                    this._skillService = _skillService;
+                function AppComponent() {
                     this.title = 'My Skills Tracker';
-                    this.getSkills();
                 }
-                AppComponent.prototype.getSkills = function () {
-                    var _this = this;
-                    this._skillService.getSkills().then(function (skills) { console.log(skills); _this.skills = skills; });
-                };
-                AppComponent.prototype.ngOnInit = function () {
-                    // this.getSkills();
-                };
-                //todo обработчик добавления навыка
-                AppComponent.prototype.addSkill = function () {
-                    //todo валидация
-                    //todo сохранение в бд
-                    console.log('add skill');
-                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'js/app/views/index.html',
-                        directives: [register_component_1.RegisterComponent, chart_component_1.ChartComponent],
+                        directives: [skill_component_1.SkillComponent, register_component_1.RegisterComponent, chart_component_1.ChartComponent],
                         providers: [skill_service_1.SkillService],
                     }), 
-                    __metadata('design:paramtypes', [skill_service_1.SkillService])
+                    __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
             }());
