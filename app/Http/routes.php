@@ -12,7 +12,11 @@
 */
 
 $app->get('/', function () use ($app) {
-    
+
     return view('index');
 //    return $app->version();
+});
+
+$app->get('/skills', function() use ($app){
+  return App\Skill::getSkills();
 });

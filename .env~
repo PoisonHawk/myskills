@@ -1,0 +1,13 @@
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=SomeRandomKey!!!
+
+DB_CONNECTION=pgsql
+DB_HOST=localhost
+DB_PORT=5432
+DB_DATABASE=myskils
+DB_USERNAME=finance_user
+DB_PASSWORD='P87rT_$h2mM'
+
+CACHE_DRIVER=memcached
+QUEUE_DRIVER=sync
