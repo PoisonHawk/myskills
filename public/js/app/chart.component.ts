@@ -1,4 +1,5 @@
 import {Component, ViewChild, ElementRef, Input, OnInit} from 'angular2/core';
+import {HTTP_PROVIDERS} from 'angular2/http';
 import {AppComponent} from './app.component';
 import {SkillService} from './skill.service';
 import {Skill} from './skill';
@@ -23,7 +24,8 @@ declare var Chart: any;
           <a href='#'>Day</a>
         </div>
     </section>
-  `
+  `,
+  providers: [SkillService, HTTP_PROVIDERS],
 })
 
 export class ChartComponent implements OnInit{
@@ -37,7 +39,7 @@ export class ChartComponent implements OnInit{
     }
 
     constructor(private _skillService: SkillService){
-      this._skillService.getSkills().then(skills => this.skills = skills);
+      // this._skillService.getSkills().then(skills => this.skills = skills);
     }
 
     getLabels(){

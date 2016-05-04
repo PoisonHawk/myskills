@@ -1,4 +1,4 @@
-System.register(['angular2/core', './skill.service', './add-skill-form.component', './skill'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', './skill.service', './add-skill-form.component', './skill'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,15 @@ System.register(['angular2/core', './skill.service', './add-skill-form.component
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, skill_service_1, add_skill_form_component_1, skill_1;
+    var core_1, http_1, skill_service_1, add_skill_form_component_1, skill_1;
     var SkillComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
             },
             function (skill_service_1_1) {
                 skill_service_1 = skill_service_1_1;
@@ -30,9 +33,17 @@ System.register(['angular2/core', './skill.service', './add-skill-form.component
             SkillComponent = (function () {
                 function SkillComponent(_skillService) {
                     this._skillService = _skillService;
-                    this.getSkills();
+                    // this.getSkills();
                     this.model = new skill_1.Skill('', 0);
                 }
+                SkillComponent.prototype.ngOnInit = function () {
+                    this.getSkillData();
+                };
+                SkillComponent.prototype.getSkillData = function () {
+                    var _this = this;
+                    this._skillService.getSkillData()
+                        .subscribe(function (skills) { return _this.skills = skills; }, function (error) { return _this.errorMessage = error; });
+                };
                 SkillComponent.prototype.getSkills = function () {
                     var _this = this;
                     this._skillService.getSkills().then(function (skills) { return _this.skills = skills; });
@@ -43,7 +54,6 @@ System.register(['angular2/core', './skill.service', './add-skill-form.component
                 };
                 SkillComponent.prototype.processSkill = function (skill) {
                     console.log('process Skill');
-                    this._skillService.processSkill(skill_1.Skill);
                 };
                 SkillComponent.prototype.onAddedSkill = function (skill) {
                     console.log('on added');
@@ -55,6 +65,7 @@ System.register(['angular2/core', './skill.service', './add-skill-form.component
                         selector: 'app-skills',
                         templateUrl: 'js/app/views/skills/skill.html',
                         directives: [add_skill_form_component_1.AddSkillFormComponent],
+                        providers: [skill_service_1.SkillService, http_1.HTTP_PROVIDERS],
                     }), 
                     __metadata('design:paramtypes', [skill_service_1.SkillService])
                 ], SkillComponent);

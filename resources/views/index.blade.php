@@ -23,6 +23,9 @@
 <script src="/js/node_modules/rxjs/bundles/Rx.js"></script>
 <script src="/js/node_modules/angular2/bundles/angular2.dev.js"></script>
 <script src='/js/node_modules/chart.js/dist/Chart.js'></script>
+<script src="/js/node_modules/angular2/bundles/http.dev.js"></script>
+<script src="/js/node_modules/rxjs/bundles/Rx.js"></script>
+
 <script>
       System.config({
         packages: {

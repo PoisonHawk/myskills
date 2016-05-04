@@ -1,4 +1,4 @@
-System.register(['angular2/core', './skill.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', './skill.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,15 @@ System.register(['angular2/core', './skill.service'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, skill_service_1;
+    var core_1, http_1, skill_service_1;
     var ChartComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
             },
             function (skill_service_1_1) {
                 skill_service_1 = skill_service_1_1;
@@ -23,9 +26,8 @@ System.register(['angular2/core', './skill.service'], function(exports_1, contex
         execute: function() {
             ChartComponent = (function () {
                 function ChartComponent(_skillService) {
-                    var _this = this;
                     this._skillService = _skillService;
-                    this._skillService.getSkills().then(function (skills) { return _this.skills = skills; });
+                    // this._skillService.getSkills().then(skills => this.skills = skills);
                 }
                 ChartComponent.prototype.ngOnInit = function () {
                     // this._skillService.getSkills().then(skills => this.skills = skills);
@@ -70,7 +72,8 @@ System.register(['angular2/core', './skill.service'], function(exports_1, contex
                 ChartComponent = __decorate([
                     core_1.Component({
                         selector: 'app-chart',
-                        template: "\n  <section class='chart'>\n        <div class='chart-nav'>\n          <a href='#'>Chart</a>\n          <a href='#'>Active</a>\n        </div>\n        <div>\n            <canvas #myChart width=\"400\" height=\"100\"></canvas>\n        </div>\n        <div>\n          <a href='#'>All</a>\n          <a href='#'>Month</a>\n          <a href='#'>Week</a>\n          <a href='#'>Day</a>\n        </div>\n    </section>\n  "
+                        template: "\n  <section class='chart'>\n        <div class='chart-nav'>\n          <a href='#'>Chart</a>\n          <a href='#'>Active</a>\n        </div>\n        <div>\n            <canvas #myChart width=\"400\" height=\"100\"></canvas>\n        </div>\n        <div>\n          <a href='#'>All</a>\n          <a href='#'>Month</a>\n          <a href='#'>Week</a>\n          <a href='#'>Day</a>\n        </div>\n    </section>\n  ",
+                        providers: [skill_service_1.SkillService, http_1.HTTP_PROVIDERS],
                     }), 
                     __metadata('design:paramtypes', [skill_service_1.SkillService])
                 ], ChartComponent);
