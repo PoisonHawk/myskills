@@ -39,24 +39,24 @@ System.register(['angular2/core', './skill.service', './add-skill-form.component
                 SkillComponent.prototype.getSkillData = function () {
                     var _this = this;
                     this._skillService.getSkillData()
-                        .subscribe(function (skills) {
-                        console.log('success');
-                        console.log(skills);
-                        _this.skills = skills;
-                        console.log(_this.skills);
-                    }, function (error) { return _this.errorMessage = error; });
+                        .subscribe(function (skills) { return _this.skills = skills; }, function (error) { return _this.errorMessage = error; });
                 };
                 SkillComponent.prototype.addSkill = function (name) {
-                    console.log('add skill');
                     this.model = new skill_1.Skill('', 0);
                 };
                 SkillComponent.prototype.processSkill = function (skill) {
-                    console.log('process Skill');
                 };
                 SkillComponent.prototype.onAddedSkill = function (skill) {
-                    console.log('on added');
-                    this.skills.push(skill);
-                    this.model = new skill_1.Skill('', 0);
+                    var _this = this;
+                    this._skillService.addSkill(skill).subscribe(function (skill) {
+                        if (typeof skill.name !== 'undefined') {
+                            _this.skills.push(skill);
+                            _this.model = new skill_1.Skill('', 0);
+                        }
+                    }, function (error) {
+                        _this.errorMessage = error;
+                        console.log(_this.errorMessage);
+                    });
                 };
                 SkillComponent = __decorate([
                     core_1.Component({

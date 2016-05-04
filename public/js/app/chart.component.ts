@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef, Input, OnInit} from 'angular2/core';
+import {Component, ViewChild, ElementRef, Input, Output, OnInit} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {AppComponent} from './app.component';
 import {SkillService} from './skill.service';
@@ -34,30 +34,38 @@ export class ChartComponent implements OnInit{
     skills: Skill[];
 
     ngOnInit(){
-
-        // this._skillService.getSkills().then(skills => this.skills = skills);
+      this.skills = [];
+      this.getSkillData();
     }
 
-    constructor(private _skillService: SkillService){
-      // this._skillService.getSkills().then(skills => this.skills = skills);
+    constructor(private _skillService: SkillService){}
+
+    getSkillData(){
+        this._skillService.getSkillData().subscribe(skills => {
+          this.skills = skills;
+          this.renderChart();
+          });
     }
 
     getLabels(){
-      return [];
-        // return this.skills.map(function(skill){
-        //   return skill.name;
-        // })
+        return this.skills.map(function(skill){
+          return skill.name;
+        })
     }
 
     getRates(){
-        return [];
-      // return this.skills.map(function(skill){
-      //     return skill.rate;
-      // })
+      return this.skills.map(function(skill){
+          return skill.rate;
+      })
     }
 
     ngAfterViewInit() { // wait for the view to init before using the element
 
+      this.renderChart();
+
+    }
+
+    renderChart(){
       let ctx: CanvasRenderingContext2D = this.myChart.nativeElement.getContext("2d");
       // happy drawing from here on
 
@@ -80,6 +88,11 @@ export class ChartComponent implements OnInit{
              }
          }
      });
+    }
 
+    onAddedSkill(skill: Skill){
+      console.log('on added');
+      this.skills.push(skill);
+      this.renderChart();
     }
 }

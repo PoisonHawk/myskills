@@ -10,12 +10,11 @@ import {Skill} from './skill';
 export class AddSkillFormComponent{
 
   @Input() model: Skill;
+  @Input() errorMessage: String;
   @Output() onAddedSkill = new EventEmitter();
 
   addSkill(){
-    console.log(this.model);
     this.onAddedSkill.emit(this.model);
-    console.log('asasa');
   }
 
 }

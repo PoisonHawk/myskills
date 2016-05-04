@@ -26,14 +26,16 @@ System.register(['angular2/core', './skill'], function(exports_1, context_1) {
                     this.onAddedSkill = new core_1.EventEmitter();
                 }
                 AddSkillFormComponent.prototype.addSkill = function () {
-                    console.log(this.model);
                     this.onAddedSkill.emit(this.model);
-                    console.log('asasa');
                 };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', skill_1.Skill)
                 ], AddSkillFormComponent.prototype, "model", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', String)
+                ], AddSkillFormComponent.prototype, "errorMessage", void 0);
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', Object)

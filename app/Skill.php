@@ -10,16 +10,17 @@ class Skill extends Model
 
     public static function getSkills($id=null){
 
-      $ans = [
-        'status' => 'success',
-        'data' => [],
-      ];
+      return DB::table('skills')->select('name', 'rate')->get();
 
-      $skills = DB::table('skills')->select('name', 'rate')->get();
-      $ans['data'] = $skills;
+    }
 
-      return json_encode($ans);
+    /**
+    *@todo добавить user_id;
+    */
+    public static function checkUniqueName($name){
+        $skill = self::where('name', $name)->get();
 
+        return count($skill) === 0;
     }
 
 }

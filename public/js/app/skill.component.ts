@@ -16,7 +16,7 @@ export class SkillComponent implements OnInit{
   model: Skill;
   errorMessage: string;
 
-  constructor(private _skillService:SkillService){}
+  constructor(private _skillService: SkillService){}
 
   ngOnInit(){
     this.model = new Skill('', 0);
@@ -26,29 +26,34 @@ export class SkillComponent implements OnInit{
 
   getSkillData(){
     this._skillService.getSkillData()
-    .subscribe(
-                       skills => {
-                         console.log('success');
-                         console.log(skills);
-                         this.skills = skills;
-                         console.log(this.skills);
-                          },
+        .subscribe(
+                       skills => this.skills = skills,
                        error =>  this.errorMessage = <any>error);
   }
 
   addSkill(name: string){
-    console.log('add skill');
     this.model = new Skill('', 0);
   }
 
   processSkill(skill){
-    console.log('process Skill');
 
   }
 
   onAddedSkill(skill: Skill){
-    console.log('on added');
-    this.skills.push(skill);
-    this.model = new Skill('', 0);
+
+    this._skillService.addSkill(skill).subscribe(
+      skill=> {
+          if(typeof skill.name !== 'undefined') {
+            this.skills.push(skill);
+            this.model = new Skill('', 0);
+        }
+      },
+      error =>
+        {this.errorMessage = <any>error;
+            console.log(this.errorMessage);
+        }
+
+    )
+
   }
 }

@@ -27,24 +27,32 @@ System.register(['angular2/core', 'angular2/http', './skill.service'], function(
             ChartComponent = (function () {
                 function ChartComponent(_skillService) {
                     this._skillService = _skillService;
-                    // this._skillService.getSkills().then(skills => this.skills = skills);
                 }
                 ChartComponent.prototype.ngOnInit = function () {
-                    // this._skillService.getSkills().then(skills => this.skills = skills);
+                    this.skills = [];
+                    this.getSkillData();
+                };
+                ChartComponent.prototype.getSkillData = function () {
+                    var _this = this;
+                    this._skillService.getSkillData().subscribe(function (skills) {
+                        _this.skills = skills;
+                        _this.renderChart();
+                    });
                 };
                 ChartComponent.prototype.getLabels = function () {
-                    return [];
-                    // return this.skills.map(function(skill){
-                    //   return skill.name;
-                    // })
+                    return this.skills.map(function (skill) {
+                        return skill.name;
+                    });
                 };
                 ChartComponent.prototype.getRates = function () {
-                    return [];
-                    // return this.skills.map(function(skill){
-                    //     return skill.rate;
-                    // })
+                    return this.skills.map(function (skill) {
+                        return skill.rate;
+                    });
                 };
                 ChartComponent.prototype.ngAfterViewInit = function () {
+                    this.renderChart();
+                };
+                ChartComponent.prototype.renderChart = function () {
                     var ctx = this.myChart.nativeElement.getContext("2d");
                     // happy drawing from here on
                     var myChart = new Chart(ctx, {
@@ -66,6 +74,11 @@ System.register(['angular2/core', 'angular2/http', './skill.service'], function(
                             }
                         }
                     });
+                };
+                ChartComponent.prototype.onAddedSkill = function (skill) {
+                    console.log('on added');
+                    this.skills.push(skill);
+                    this.renderChart();
                 };
                 __decorate([
                     core_1.ViewChild('myChart'), 
