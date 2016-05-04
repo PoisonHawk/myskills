@@ -43,16 +43,17 @@ export class ChartComponent implements OnInit{
     }
 
     getLabels(){
-
-        return this.skills.map(function(skill){
-          return skill.name;
-        })
+      return [];
+        // return this.skills.map(function(skill){
+        //   return skill.name;
+        // })
     }
 
     getRates(){
-      return this.skills.map(function(skill){
-          return skill.rate;
-      })
+        return [];
+      // return this.skills.map(function(skill){
+      //     return skill.rate;
+      // })
     }
 
     ngAfterViewInit() { // wait for the view to init before using the element

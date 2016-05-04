@@ -33,6 +33,10 @@
             format: 'register',
             defaultExtension: 'js'
           },
+          'js/node_modules/rxjs':{
+            defaultExtension: 'js'
+          }
+
         }
 
       });

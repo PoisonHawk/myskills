@@ -1,5 +1,4 @@
 import {Component, Output, OnInit} from 'angular2/core';
-import {HTTP_PROVIDERS} from 'angular2/http';
 import {SkillService} from './skill.service';
 import {AddSkillFormComponent} from './add-skill-form.component';
 import {Skill} from './skill';
@@ -8,35 +7,33 @@ import {Skill} from './skill';
   selector: 'app-skills',
   templateUrl: 'js/app/views/skills/skill.html',
   directives: [AddSkillFormComponent],
-  providers: [SkillService, HTTP_PROVIDERS],
+  providers: [SkillService],
 })
 
 export class SkillComponent implements OnInit{
 
-  skills;
-
+  skills: Skill[];
   model: Skill;
-
   errorMessage: string;
 
-  constructor(private _skillService:SkillService){
-    // this.getSkills();
-    this.model = new Skill('', 0);
-  }
+  constructor(private _skillService:SkillService){}
 
   ngOnInit(){
+    this.model = new Skill('', 0);
+    this.skills = [];
     this.getSkillData();
   }
 
   getSkillData(){
     this._skillService.getSkillData()
     .subscribe(
-                       skills => this.skills = skills,
+                       skills => {
+                         console.log('success');
+                         console.log(skills);
+                         this.skills = skills;
+                         console.log(this.skills);
+                          },
                        error =>  this.errorMessage = <any>error);
-  }
-
-  getSkills(){
-    this._skillService.getSkills().then(skills => this.skills = skills);
   }
 
   addSkill(name: string){

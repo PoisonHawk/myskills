@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', './mock-skills'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', './mock-skills'], function(ex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, mock_skills_1;
+    var core_1, http_1;
     var SkillService;
     return {
         setters:[
@@ -19,9 +19,6 @@ System.register(['angular2/core', 'angular2/http', './mock-skills'], function(ex
             },
             function (http_1_1) {
                 http_1 = http_1_1;
-            },
-            function (mock_skills_1_1) {
-                mock_skills_1 = mock_skills_1_1;
             }],
         execute: function() {
             SkillService = (function () {
@@ -29,16 +26,18 @@ System.register(['angular2/core', 'angular2/http', './mock-skills'], function(ex
                     this.http = http;
                 }
                 ;
-                SkillService.prototype.getSkills = function () {
-                    return Promise.resolve(mock_skills_1.Skills);
-                };
                 SkillService.prototype.getSkillData = function () {
                     return this.http.get('/skills')
                         .map(this.extractData);
                     // .catch(this.handleError);
                 };
                 SkillService.prototype.extractData = function (res) {
-                    console.log(res);
+                    console.log(res.json());
+                    if (res.status < 200 || res.status >= 300) {
+                        throw new Error('Bad response status: ' + res.status);
+                    }
+                    var body = res.json();
+                    return body.data || {};
                 };
                 ;
                 SkillService.prototype.handleError = function (error) {

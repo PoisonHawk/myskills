@@ -1,4 +1,4 @@
-System.register(['angular2/core', './register.component', './chart.component', './skill.service', './skill.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './register.component', './chart.component', './skill.service', './skill.component', 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './register.component', './chart.component', '
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, register_component_1, chart_component_1, skill_service_1, skill_component_1;
+    var core_1, register_component_1, chart_component_1, skill_service_1, skill_component_1, http_1;
     var AppComponent;
     return {
         setters:[
@@ -28,6 +28,9 @@ System.register(['angular2/core', './register.component', './chart.component', '
             },
             function (skill_component_1_1) {
                 skill_component_1 = skill_component_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -39,7 +42,7 @@ System.register(['angular2/core', './register.component', './chart.component', '
                         selector: 'my-app',
                         templateUrl: 'js/app/views/index.html',
                         directives: [skill_component_1.SkillComponent, register_component_1.RegisterComponent, chart_component_1.ChartComponent],
-                        providers: [skill_service_1.SkillService],
+                        providers: [skill_service_1.SkillService, http_1.HTTP_PROVIDERS],
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

@@ -4,12 +4,13 @@ import {RegisterComponent} from './register.component';
 import {ChartComponent} from './chart.component';
 import {SkillService} from './skill.service';
 import {SkillComponent} from './skill.component';
+import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
 	selector: 'my-app',
 	templateUrl: 'js/app/views/index.html',
 	directives: [SkillComponent, RegisterComponent, ChartComponent],
-	providers: [SkillService],
+	providers: [SkillService, HTTP_PROVIDERS],
 })
 
 export class AppComponent{

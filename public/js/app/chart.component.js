@@ -33,14 +33,16 @@ System.register(['angular2/core', 'angular2/http', './skill.service'], function(
                     // this._skillService.getSkills().then(skills => this.skills = skills);
                 };
                 ChartComponent.prototype.getLabels = function () {
-                    return this.skills.map(function (skill) {
-                        return skill.name;
-                    });
+                    return [];
+                    // return this.skills.map(function(skill){
+                    //   return skill.name;
+                    // })
                 };
                 ChartComponent.prototype.getRates = function () {
-                    return this.skills.map(function (skill) {
-                        return skill.rate;
-                    });
+                    return [];
+                    // return this.skills.map(function(skill){
+                    //     return skill.rate;
+                    // })
                 };
                 ChartComponent.prototype.ngAfterViewInit = function () {
                     var ctx = this.myChart.nativeElement.getContext("2d");

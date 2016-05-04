@@ -1,6 +1,6 @@
 export class Skill{
 
-	constructor(
+	constructor(		
 		public name: string,
 		public rate: number){	}
 }
