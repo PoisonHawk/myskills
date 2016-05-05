@@ -26,16 +26,7 @@ System.register(['angular2/core', './skill.service'], function(exports_1, contex
                 }
                 ChartComponent.prototype.ngOnChanges = function (changes) {
                     console.info('on changes');
-                    var skills = changes.skills.currentValue, labels = [], dataset = [];
-                    if (skills.length > 0) {
-                        for (var skill in skills) {
-                            labels.push(skills[skill].name);
-                            dataset.push(skills[skill].rate);
-                        }
-                        this.chart.data.labels = labels;
-                        this.chart.data.datasets[0].data = dataset;
-                        this.chart.update();
-                    }
+                    this.updateChart();
                 };
                 ChartComponent.prototype.ngOnInit = function () {
                     console.info('on init');
@@ -55,7 +46,18 @@ System.register(['angular2/core', './skill.service'], function(exports_1, contex
                         return skill.rate;
                     });
                 };
+                //redraw chart
                 ChartComponent.prototype.updateChart = function () {
+                    if (this.skills.length > 0) {
+                        var labels = [], dataset = [];
+                        for (var skill in this.skills) {
+                            labels.push(this.skills[skill].name);
+                            dataset.push(this.skills[skill].rate);
+                        }
+                        this.chart.data.labels = labels;
+                        this.chart.data.datasets[0].data = dataset;
+                        this.chart.clear().update();
+                    }
                 };
                 ChartComponent.prototype.renderChart = function () {
                     var ctx = this.myChart.nativeElement.getContext("2d");
@@ -87,6 +89,10 @@ System.register(['angular2/core', './skill.service'], function(exports_1, contex
                     core_1.Input(), 
                     __metadata('design:type', Array)
                 ], ChartComponent.prototype, "skills", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Number)
+                ], ChartComponent.prototype, "changeTrigger", void 0);
                 ChartComponent = __decorate([
                     core_1.Component({
                         selector: 'app-chart',

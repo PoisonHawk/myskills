@@ -1,13 +1,14 @@
-import {Component, Output, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
+import {ChartComponent} from './chart.component';
 import {SkillService} from './skill.service';
 import {AddSkillFormComponent} from './add-skill-form.component';
 import {Skill} from './skill';
-import {ChartComponent} from './chart.component';
+
 
 @Component ({
   selector: 'app-skills',
   templateUrl: 'js/app/views/skills/skill.html',
-  directives: [AddSkillFormComponent, ChartComponent],
+  directives: [ChartComponent, AddSkillFormComponent],
   providers: [SkillService],
 })
 
@@ -16,6 +17,7 @@ export class SkillComponent implements OnInit{
   skills: Skill[];
   model: Skill;
   errorMessage: string;
+  changeTrigger: number = 1;
 
   constructor(private _skillService: SkillService){}
 
@@ -32,12 +34,14 @@ export class SkillComponent implements OnInit{
                        error =>  this.errorMessage = <any>error);
   }
 
+
   addSkill(name: string){
     this.model = new Skill('', 0);
   }
 
-  processSkill(skill){
-
+  processSkill(index){
+      this.skills[index].rate ++;
+      this.changeTrigger++;
   }
 
   onAddedSkill(skill: Skill){
@@ -46,6 +50,8 @@ export class SkillComponent implements OnInit{
       skill=> {
           if(typeof skill.name !== 'undefined') {
             this.skills.push(skill);
+            this.changeTrigger++;
+            console.log(this.skills);
             this.model = new Skill('', 0);
         }
       },

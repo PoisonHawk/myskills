@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef, Input, Output, OnInit, OnChanges} from 'angular2/core';
+import {Component, ViewChild, ElementRef, Input, OnInit, OnChanges, SimpleChange} from 'angular2/core';
 import {SkillService} from './skill.service';
 import {Skill} from './skill';
 
@@ -16,31 +16,18 @@ declare var Chart: any;
   providers: [SkillService],
 })
 
-export class ChartComponent implements OnInit, OnChanges{
+export class ChartComponent implements OnChanges, OnInit{
 
     chart;
 
     @ViewChild ('myChart') myChart: ElementRef;
 
     @Input() skills: Skill[];
+    @Input() changeTrigger: number;
 
     ngOnChanges(changes){
         console.info('on changes');
-        let skills = changes.skills.currentValue,
-        labels = [],
-        dataset = [];
-
-        if(skills.length>0){
-            for(let skill in skills) {
-                labels.push(skills[skill].name);
-                dataset.push(skills[skill].rate);
-
-            }
-            this.chart.data.labels=labels;
-            this.chart.data.datasets[0].data=dataset;
-            this.chart.update();
-        }
-
+        this.updateChart();
     }
 
     ngOnInit(){
@@ -65,10 +52,23 @@ export class ChartComponent implements OnInit, OnChanges{
       })
     }
 
-
-
+    //redraw chart
     updateChart(){
 
+        if(this.skills.length > 0){
+
+            let labels = [],
+            dataset = [];
+
+            for(let skill in this.skills) {
+                labels.push(this.skills[skill].name);
+                dataset.push(this.skills[skill].rate);
+            }
+
+            this.chart.data.labels=labels;
+            this.chart.data.datasets[0].data=dataset;
+            this.chart.clear().update();
+        }
     }
 
     renderChart(){
