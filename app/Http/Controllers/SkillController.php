@@ -62,6 +62,27 @@ class SkillController extends Controller
 
     public function update(Request $req){
 
+        $id = $req->input('id');
+
+        $skill = Skill::find($id);
+
+        //todo проверка на существование
+        if ($skill === null) {
+            $ans = ['status' => 'fail',
+                    'errorMsg' => 'fail skill',
+                ];
+            return response()->json($ans);
+        }
+
+        $skill->rate++;
+        $skill->save();
+
+        $ans = [
+            'status'=> 'success',
+            'data' => $skill,
+        ];
+
+        return response()->json($ans);
     }
 
     public function destroy(){

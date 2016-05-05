@@ -10,7 +10,10 @@ class Skill extends Model
 
     public static function getSkills($id=null){
 
-      return DB::table('skills')->select('name', 'rate')->get();
+      return DB::table('skills')
+        ->select('id', 'name', 'rate')
+        ->orderBy('id')
+        ->get();
 
     }
 

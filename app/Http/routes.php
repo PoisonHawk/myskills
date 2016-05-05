@@ -18,3 +18,5 @@ $app->get('/', function () use ($app) {
 $app->get('/skills', ['uses'=> 'SkillController@index']);
 
 $app->post('/skills', ['uses' => 'SkillController@store']);
+
+$app->post('/skills/{id}', ['uses' => 'SkillController@update']);

@@ -36,7 +36,7 @@ System.register(['angular2/core', './chart.component', './skill.service', './add
                     this.changeTrigger = 1;
                 }
                 SkillComponent.prototype.ngOnInit = function () {
-                    this.model = new skill_1.Skill('', 0);
+                    this.model = new skill_1.Skill(null, '', 0);
                     this.skills = [];
                     this.getSkillData();
                 };
@@ -46,11 +46,18 @@ System.register(['angular2/core', './chart.component', './skill.service', './add
                         .subscribe(function (skills) { return _this.skills = skills; }, function (error) { return _this.errorMessage = error; });
                 };
                 SkillComponent.prototype.addSkill = function (name) {
-                    this.model = new skill_1.Skill('', 0);
+                    this.model = new skill_1.Skill(null, '', 0);
                 };
                 SkillComponent.prototype.processSkill = function (index) {
-                    this.skills[index].rate++;
-                    this.changeTrigger++;
+                    var _this = this;
+                    var skill = this.skills[index];
+                    this._skillService.processSkill(skill).subscribe(function (skill) {
+                        _this.skills[index].rate++;
+                        _this.changeTrigger++;
+                    }, function (error) {
+                        _this.errorMessage = error;
+                        console.log(_this.errorMessage);
+                    });
                 };
                 SkillComponent.prototype.onAddedSkill = function (skill) {
                     var _this = this;
@@ -59,7 +66,7 @@ System.register(['angular2/core', './chart.component', './skill.service', './add
                             _this.skills.push(skill);
                             _this.changeTrigger++;
                             console.log(_this.skills);
-                            _this.model = new skill_1.Skill('', 0);
+                            _this.model = new skill_1.Skill(null, '', 0);
                         }
                     }, function (error) {
                         _this.errorMessage = error;

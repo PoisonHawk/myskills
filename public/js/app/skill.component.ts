@@ -22,7 +22,7 @@ export class SkillComponent implements OnInit{
   constructor(private _skillService: SkillService){}
 
   ngOnInit(){
-    this.model = new Skill('', 0);
+    this.model = new Skill(null,'', 0);
     this.skills = [];
     this.getSkillData();
   }
@@ -36,12 +36,24 @@ export class SkillComponent implements OnInit{
 
 
   addSkill(name: string){
-    this.model = new Skill('', 0);
+    this.model = new Skill(null, '', 0);
   }
 
   processSkill(index){
-      this.skills[index].rate ++;
-      this.changeTrigger++;
+      let skill = this.skills[index];
+      this._skillService.processSkill(skill).subscribe(
+          skill=>{
+              this.skills[index].rate++;
+              this.changeTrigger++;
+          },
+          error =>
+          {this.errorMessage = <any>error;
+              console.log(this.errorMessage);
+          }
+      )
+
+
+
   }
 
   onAddedSkill(skill: Skill){
@@ -52,7 +64,7 @@ export class SkillComponent implements OnInit{
             this.skills.push(skill);
             this.changeTrigger++;
             console.log(this.skills);
-            this.model = new Skill('', 0);
+            this.model = new Skill(null,'', 0);
         }
       },
       error =>

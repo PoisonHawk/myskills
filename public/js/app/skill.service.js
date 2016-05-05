@@ -59,6 +59,15 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                         .map(this.extractData)
                         .catch(this.handleError);
                 };
+                SkillService.prototype.processSkill = function (skill) {
+                    var skillId = skill.id;
+                    var body = JSON.stringify(skill);
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this.http.post('/skills/' + skillId, body, options)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+                };
                 SkillService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
