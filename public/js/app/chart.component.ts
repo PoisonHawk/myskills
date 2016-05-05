@@ -1,6 +1,4 @@
-import {Component, ViewChild, ElementRef, Input, Output, OnInit} from 'angular2/core';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {AppComponent} from './app.component';
+import {Component, ViewChild, ElementRef, Input, Output, OnInit, OnChanges} from 'angular2/core';
 import {SkillService} from './skill.service';
 import {Skill} from './skill';
 
@@ -10,41 +8,49 @@ declare var Chart: any;
   selector: 'app-chart',
   template: `
   <section class='chart'>
-        <div class='chart-nav'>
-          <a href='#'>Chart</a>
-          <a href='#'>Active</a>
-        </div>
         <div>
             <canvas #myChart width="400" height="100"></canvas>
         </div>
-        <div>
-          <a href='#'>All</a>
-          <a href='#'>Month</a>
-          <a href='#'>Week</a>
-          <a href='#'>Day</a>
-        </div>
     </section>
   `,
-  providers: [SkillService, HTTP_PROVIDERS],
+  providers: [SkillService],
 })
 
-export class ChartComponent implements OnInit{
+export class ChartComponent implements OnInit, OnChanges{
+
+    chart;
+
     @ViewChild ('myChart') myChart: ElementRef;
 
-    skills: Skill[];
+    @Input() skills: Skill[];
 
-    ngOnInit(){
-      this.skills = [];
-      this.getSkillData();
+    ngOnChanges(changes){
+        console.info('on changes');
+        let skills = changes.skills.currentValue,
+        labels = [],
+        dataset = [];
+
+        if(skills.length>0){
+            for(let skill in skills) {
+                labels.push(skills[skill].name);
+                dataset.push(skills[skill].rate);
+
+            }
+            this.chart.data.labels=labels;
+            this.chart.data.datasets[0].data=dataset;
+            this.chart.update();
+        }
+
     }
 
-    constructor(private _skillService: SkillService){}
+    ngOnInit(){
+        console.info('on init');
+        this.skills = [];
+    }
 
-    getSkillData(){
-        this._skillService.getSkillData().subscribe(skills => {
-          this.skills = skills;
-          this.renderChart();
-          });
+    ngAfterViewInit() {
+        console.info('after view init');
+        this.renderChart();
     }
 
     getLabels(){
@@ -59,17 +65,16 @@ export class ChartComponent implements OnInit{
       })
     }
 
-    ngAfterViewInit() { // wait for the view to init before using the element
 
-      this.renderChart();
+
+    updateChart(){
 
     }
 
     renderChart(){
       let ctx: CanvasRenderingContext2D = this.myChart.nativeElement.getContext("2d");
-      // happy drawing from here on
 
-      var myChart = new Chart(ctx, {
+      this.chart = new Chart(ctx, {
          type: 'bar',
          data: {
              labels: this.getLabels(),
@@ -90,9 +95,4 @@ export class ChartComponent implements OnInit{
      });
     }
 
-    onAddedSkill(skill: Skill){
-      console.log('on added');
-      this.skills.push(skill);
-      this.renderChart();
-    }
 }

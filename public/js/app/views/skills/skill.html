@@ -1,3 +1,4 @@
+<app-chart [skills]="skills"></app-chart>
 <section class="skills">
   <p *ngIf="skills.length === 0">Нет ни одного навыка.</p>
   <button class="btn btn-default" *ngFor="#skill of skills" (click)=processSkill(skill)>{{ skill.name }} </button>
