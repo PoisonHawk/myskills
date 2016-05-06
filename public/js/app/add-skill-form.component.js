@@ -23,6 +23,7 @@ System.register(['angular2/core', './skill'], function(exports_1, context_1) {
         execute: function() {
             AddSkillFormComponent = (function () {
                 function AddSkillFormComponent() {
+                    this.errorMessage = [];
                     this.onAddedSkill = new core_1.EventEmitter();
                 }
                 AddSkillFormComponent.prototype.addSkill = function () {
@@ -34,7 +35,7 @@ System.register(['angular2/core', './skill'], function(exports_1, context_1) {
                 ], AddSkillFormComponent.prototype, "model", void 0);
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', String)
+                    __metadata('design:type', Array)
                 ], AddSkillFormComponent.prototype, "errorMessage", void 0);
                 __decorate([
                     core_1.Output(), 

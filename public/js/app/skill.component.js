@@ -33,10 +33,11 @@ System.register(['angular2/core', './chart.component', './skill.service', './add
             SkillComponent = (function () {
                 function SkillComponent(_skillService) {
                     this._skillService = _skillService;
+                    this.errorMessage = [];
                     this.changeTrigger = 1;
                 }
                 SkillComponent.prototype.ngOnInit = function () {
-                    this.model = new skill_1.Skill(null, '', 0);
+                    this.resetData();
                     this.skills = [];
                     this.getSkillData();
                 };
@@ -46,6 +47,10 @@ System.register(['angular2/core', './chart.component', './skill.service', './add
                         .subscribe(function (skills) { return _this.skills = skills; }, function (error) { return _this.errorMessage = error; });
                 };
                 SkillComponent.prototype.addSkill = function (name) {
+                    this.resetData();
+                };
+                SkillComponent.prototype.resetData = function () {
+                    this.errorMessage = [];
                     this.model = new skill_1.Skill(null, '', 0);
                 };
                 SkillComponent.prototype.processSkill = function (index) {
@@ -54,24 +59,27 @@ System.register(['angular2/core', './chart.component', './skill.service', './add
                     this._skillService.processSkill(skill).subscribe(function (skill) {
                         _this.skills[index].rate++;
                         _this.changeTrigger++;
-                    }, function (error) {
-                        _this.errorMessage = error;
-                        console.log(_this.errorMessage);
-                    });
+                    }, function (error) { return _this.errorMessage = error; });
+                };
+                SkillComponent.prototype.closeModal = function () {
+                    document.getElementsByTagName('body')[0].classList.remove('modal-open');
+                    document.getElementsByClassName('modal-backdrop')[0].remove();
+                    document.getElementById('myModal').style.display = 'none';
+                    document.getElementById('myModal').classList.remove('in');
                 };
                 SkillComponent.prototype.onAddedSkill = function (skill) {
                     var _this = this;
-                    this._skillService.addSkill(skill).subscribe(function (skill) {
-                        if (typeof skill.name !== 'undefined') {
+                    this._skillService.addSkill(skill).subscribe(function (data) {
+                        if (data.status === 'success') {
                             _this.skills.push(skill);
                             _this.changeTrigger++;
-                            console.log(_this.skills);
-                            _this.model = new skill_1.Skill(null, '', 0);
+                            _this.resetData();
+                            _this.closeModal();
                         }
-                    }, function (error) {
-                        _this.errorMessage = error;
-                        console.log(_this.errorMessage);
-                    });
+                        else {
+                            _this.errorMessage.push(data.errorMsg);
+                        }
+                    }, function (error) { return _this.errorMessage = error; });
                 };
                 SkillComponent = __decorate([
                     core_1.Component({

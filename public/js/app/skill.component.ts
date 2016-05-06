@@ -16,13 +16,13 @@ export class SkillComponent implements OnInit{
 
   skills: Skill[];
   model: Skill;
-  errorMessage: string;
+  errorMessage: string[] = [];
   changeTrigger: number = 1;
 
   constructor(private _skillService: SkillService){}
 
   ngOnInit(){
-    this.model = new Skill(null,'', 0);
+    this.resetData();
     this.skills = [];
     this.getSkillData();
   }
@@ -34,9 +34,13 @@ export class SkillComponent implements OnInit{
                        error =>  this.errorMessage = <any>error);
   }
 
-
   addSkill(name: string){
-    this.model = new Skill(null, '', 0);
+    this.resetData();
+  }
+
+  resetData(){
+      this.errorMessage = [];
+      this.model = new Skill(null, '', 0);
   }
 
   processSkill(index){
@@ -46,33 +50,31 @@ export class SkillComponent implements OnInit{
               this.skills[index].rate++;
               this.changeTrigger++;
           },
-          error =>
-          {this.errorMessage = <any>error;
-              console.log(this.errorMessage);
-          }
+          error =>this.errorMessage = <any>error
       )
+  }
 
-
-
+  closeModal(){
+      document.getElementsByTagName('body')[0].classList.remove('modal-open');
+      document.getElementsByClassName('modal-backdrop')[0].remove();
+      document.getElementById('myModal').style.display = 'none';
+      document.getElementById('myModal').classList.remove('in');
   }
 
   onAddedSkill(skill: Skill){
 
     this._skillService.addSkill(skill).subscribe(
-      skill=> {
-          if(typeof skill.name !== 'undefined') {
+      data=> {
+          if(data.status === 'success') {
             this.skills.push(skill);
             this.changeTrigger++;
-            console.log(this.skills);
-            this.model = new Skill(null,'', 0);
+            this.resetData();
+            this.closeModal();
+        } else {
+            this.errorMessage.push(data.errorMsg);
         }
       },
-      error =>
-        {this.errorMessage = <any>error;
-            console.log(this.errorMessage);
-        }
-
+      error => this.errorMessage = <any>error
     )
-
   }
 }

@@ -8,10 +8,16 @@
       </div>
       <div class="modal-body">
         <form #addSkillForm="ngForm">
-            <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+            <div *ngIf='errorMessage.length>0'>
+                <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+            </div>
               <div class="form-group" [ngClass]="{'has-error': !addSkillForm.form.valid }">
-                <label for="recipient-name" class="control-label">New skill:</label>
-                <input [(ngModel)]="model.name" ngControl="name" type="text" class="form-control" id="recipient-name" required>
+                <label for="skill-name" class="control-label">New skill:</label>
+                <input [(ngModel)]="model.name" ngControl="name" type="text" class="form-control" id="skill-name" required>
+              </div>
+              <div class="form-group" >
+                <label for="skill-rate" class="control-label">Rate:</label>
+                <input [(ngModel)]="model.rate" ngControl="rate" type="text" class="form-control" id="skill-rate">
               </div>
         </form>
       </div>

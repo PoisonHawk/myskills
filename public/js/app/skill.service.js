@@ -30,44 +30,57 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                 }
                 ;
                 SkillService.prototype.getSkillData = function () {
-                    console.log('skillSertvice: getSkillData');
                     return this.http.get('/skills')
-                        .map(this.extractData)
-                        .catch(this.handleError);
+                        .map(this._extractData)
+                        .catch(this._handleError);
                 };
-                SkillService.prototype.extractData = function (res) {
-                    if (res.status < 200 || res.status >= 300) {
-                        throw new Error('Bad response status: ' + res.status);
-                    }
-                    var body = res.json();
-                    console.log(body);
-                    return body.data || {};
-                };
-                ;
-                SkillService.prototype.handleError = function (error) {
-                    console.log('error');
-                    var errMsg = error.message || 'Server error';
-                    console.error(errMsg); // log to console instead
-                    return Observable_1.Observable.throw(errMsg);
-                };
-                ;
                 SkillService.prototype.addSkill = function (skill) {
                     var body = JSON.stringify(skill);
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
                     return this.http.post('/skills', body, options)
-                        .map(this.extractData)
-                        .catch(this.handleError);
+                        .map(this._processData)
+                        .catch(this._handleError);
                 };
                 SkillService.prototype.processSkill = function (skill) {
-                    var skillId = skill.id;
                     var body = JSON.stringify(skill);
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
-                    return this.http.post('/skills/' + skillId, body, options)
-                        .map(this.extractData)
-                        .catch(this.handleError);
+                    return this.http.post('/skills/' + skill.id, body, options)
+                        .map(this._extractData)
+                        .catch(this._handleError);
                 };
+                SkillService.prototype._extractData = function (res) {
+                    if (res.status < 200 || res.status >= 300) {
+                        throw new Error('Bad response status: ' + res.status);
+                    }
+                    var body = res.json();
+                    return body.data || {};
+                };
+                ;
+                SkillService.prototype._handleError = function (error) {
+                    var errMsg = [];
+                    if (error.status == '422') {
+                        var errors = error.json();
+                        for (var err in errors) {
+                            errMsg.push(errors[err]);
+                        }
+                        return Observable_1.Observable.throw(errMsg);
+                    }
+                    else {
+                        errMsg.push('Server error');
+                        console.error(errMsg); // log to console instead
+                        return Observable_1.Observable.throw(errMsg);
+                    }
+                };
+                ;
+                SkillService.prototype._processData = function (res) {
+                    if (res.status < 200 || res.status >= 300) {
+                        throw new Error('Bad response status: ' + res.status);
+                    }
+                    return res.json();
+                };
+                ;
                 SkillService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])

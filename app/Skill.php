@@ -14,14 +14,14 @@ class Skill extends Model
         ->select('id', 'name', 'rate')
         ->orderBy('id')
         ->get();
-
     }
 
     /**
     *@todo добавить user_id;
     */
     public static function checkUniqueName($name){
-        $skill = self::where('name', $name)->get();
+        
+        $skill = DB::select('select lower(name) from skills where name = :name', ['name' => strtolower($name)]);
 
         return count($skill) === 0;
     }

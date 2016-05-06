@@ -10,7 +10,7 @@ import {Skill} from './skill';
 export class AddSkillFormComponent{
 
   @Input() model: Skill;
-  @Input() errorMessage: String;
+  @Input() errorMessage: string[] = [];
   @Output() onAddedSkill = new EventEmitter();
 
   addSkill(){
