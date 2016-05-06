@@ -1,14 +1,17 @@
 import {Component} from 'angular2/core';
-import {Skill} from './skill';
-import {RegisterComponent} from './register.component';
 import {SkillService} from './skill.service';
 import {SkillComponent} from './skill.component';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
 	selector: 'my-app',
-	templateUrl: 'js/app/views/index.html',
-	directives: [SkillComponent, RegisterComponent],
+	template: `<main class='container'>
+		<header class='text-center'>
+			<h1>{{title}}</h1>
+		</header>
+	    	<app-skills></app-skills>
+	</main>`,
+	directives: [SkillComponent],
 	providers: [SkillService, HTTP_PROVIDERS],
 })
 

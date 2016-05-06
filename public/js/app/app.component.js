@@ -1,4 +1,4 @@
-System.register(['angular2/core', './register.component', './skill.service', './skill.component', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', './skill.service', './skill.component', 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,12 @@ System.register(['angular2/core', './register.component', './skill.service', './
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, register_component_1, skill_service_1, skill_component_1, http_1;
+    var core_1, skill_service_1, skill_component_1, http_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (register_component_1_1) {
-                register_component_1 = register_component_1_1;
             },
             function (skill_service_1_1) {
                 skill_service_1 = skill_service_1_1;
@@ -37,8 +34,8 @@ System.register(['angular2/core', './register.component', './skill.service', './
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        templateUrl: 'js/app/views/index.html',
-                        directives: [skill_component_1.SkillComponent, register_component_1.RegisterComponent],
+                        template: "<main class='container'>\n\t\t<header class='text-center'>\n\t\t\t<h1>{{title}}</h1>\n\t\t</header>\n\t    \t<app-skills></app-skills>\n\t</main>",
+                        directives: [skill_component_1.SkillComponent],
                         providers: [skill_service_1.SkillService, http_1.HTTP_PROVIDERS],
                     }), 
                     __metadata('design:paramtypes', [])

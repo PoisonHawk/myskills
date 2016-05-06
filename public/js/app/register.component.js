@@ -20,21 +20,15 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             RegisterComponent = (function () {
                 function RegisterComponent() {
-                    this.actions = [
-                        {
-                            skill: 'Laravel',
-                            material: 'Статья на хабре'
-                        },
-                        {
-                            skill: 'JS',
-                            material: 'JS'
-                        },
-                    ];
                 }
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], RegisterComponent.prototype, "registers", void 0);
                 RegisterComponent = __decorate([
                     core_1.Component({
                         selector: 'app-register',
-                        template: "\n  <section class=\"register\">\n    <table class=\"table table-striped\">\n    <thead>\n      <th>Skill</th>\n      <th>Active</th>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"#action of actions\">\n        <td>{{action.skill}}</td>\n        <td>{{action.material}}</td>\n      </tr>\n    </tbody>\n  </table>\n  </section>\n  "
+                        template: "\n  <section class=\"register\">\n    <table class=\"table table-striped\">\n    <thead>\n      <th>Skill</th>\n      <th>Active</th>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"#action of registers\">\n        <td>{{action.skillName}}</td>\n        <td>{{action.action}}</td>\n      </tr>\n    </tbody>\n  </table>\n  </section>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], RegisterComponent);

@@ -1,13 +1,19 @@
 
 <section class="skills">
   <p *ngIf="skills.length === 0">Нет ни одного навыка.</p>
-  <button class="btn btn-default" *ngFor="#skill of skills; #i=index" (click)=processSkill(i)>{{ skill.name }} </button>
+  <button class="btn btn-default" *ngFor="#skill of skills; #i=index" (click)=processSkill(i) data-toggle="modal" data-target="#process_skill">{{ skill.name }} </button>
   <div><a href='#' data-toggle="modal" data-target="#myModal" (click)=addSkill()>Add skill</a></div>
 </section>
 <app-chart [skills]="skills" [changeTrigger]="changeTrigger"></app-chart>
+<app-register [registers]="registers"></app-register>
 <add-skill-form
   [model]="model"
   [errorMessage] = 'errorMessage'
   (onAddedSkill) = "onAddedSkill($event)"
 >
 </add-skill-form>
+<process-skill-form
+    [model]="model"
+    [errorMessage] = 'errorMessage'
+    (onProcessSkill) = 'onProcessSkill($event)'
+></process-skill-form>

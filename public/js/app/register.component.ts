@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 
 @Component({
   selector:'app-register',
@@ -10,9 +10,9 @@ import {Component} from 'angular2/core';
       <th>Active</th>
     </thead>
     <tbody>
-      <tr *ngFor="#action of actions">
-        <td>{{action.skill}}</td>
-        <td>{{action.material}}</td>
+      <tr *ngFor="#action of registers">
+        <td>{{action.skillName}}</td>
+        <td>{{action.action}}</td>
       </tr>
     </tbody>
   </table>
@@ -22,14 +22,5 @@ import {Component} from 'angular2/core';
 
 export class RegisterComponent{
 
-  actions = [
-		{
-			skill: 'Laravel',
-			material: 'Статья на хабре'
-		},
-		{
-			skill: 'JS',
-			material: 'JS'
-		},
-	];
+    @Input() registers: any;
 }
